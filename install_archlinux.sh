@@ -40,10 +40,12 @@ mkswap /dev/sda2
 
 #Montage de nos partitions
 
+mount /dev/sda3 /mnt
+
 mkdir /mnt/home
 mkdir /mnt/boot
 
-mount /dev/sda3 /mnt
+
 mount /dev/sda4 /mnt/home
 mount /dev/sda1 /mnt/boot
 
