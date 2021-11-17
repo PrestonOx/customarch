@@ -58,3 +58,4 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 cp install_archlinux_part2.sh /mnt/install_archlinux_part2.sh
 arch-chroot /mnt ./install_archlinux_part2.sh
+reboot
