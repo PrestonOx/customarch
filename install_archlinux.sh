@@ -10,6 +10,7 @@ timedatectl set-timezone Europe/Paris
 #Notes : Une partition pour /, une partition pour le boot, une partition pour /home et une
 #derniere partition pour le SWAP
 # /boot --> /dev/sda1 ; SWAP --> /dev/sda2 ; / --> /dev/sda3 ; /home --> /dev/sda4
+
 sectorsize=`fdisk -l | head -n 3 | grep Units: | awk {'print $6'}`
 diskname=`fdisk -l | head -n 1 | awk {'print $2'} |sed 's/.$//'`
 
@@ -26,14 +27,17 @@ secdiskhome=$(($secdiskroot - $firststart))
 secstarts=$(($secramsize + $fstart))
 secstartt=$(($secstarts + $secdiskroot))
 
+#Redirection vers le fichier my.layout
+
 echo "label: dos" > my.layout
 echo "device: $diskname" >> my.layout
 echo "unit: sectors" >> my.layout
 echo "sector-size: $sectorsize" >> my.layout
-echo "/dev/sda1 : start= $firststart, size= $sizeboot, type=83, bootable" >> my.layout
-echo "/dev/sda2 : start= $fstart, size= $secramsize, type=82" >> my.layout
-echo "/dev/sda3 : start= $secstarts, size= $secdiskroot, type=83" >> my.layout
-echo "/dev/sda4 : start= $secstartt, size= $secdiskhome, type=83" >> my.layout
+echo ""$diskname"1 : start= $firststart, size= $sizeboot, type=83, bootable" >> my.layout
+echo ""$diskname"2 : start= $fstart, size= $secramsize, type=82" >> my.layout
+echo ""$diskname"3 : start= $secstarts, size= $secdiskroot, type=83" >> my.layout
+echo ""$diskname"4 : start= $secstartt, size= $secdiskhome, type=83" >> my.layout
+
 sfdisk $diskname < my.layout
 
 #Formatage des partitions precedemment creees
