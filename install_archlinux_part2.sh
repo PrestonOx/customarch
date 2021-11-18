@@ -1,4 +1,7 @@
 #!/bin/bash
+
+diskname=`fdisk -l | head -n 1 | awk {'print $2'} |sed 's/.$//'`
+
 #Installation de quelques paquets essentiels
 pacman -S --noconfirm vim nano
 pacman -S --noconfirm dhcpcd
@@ -26,7 +29,7 @@ echo -e "testdeploy\ntestdeploy" | passwd
 
 #Install GRUB
 pacman -S --noconfirm grub
-grub-install --target=i386-pc --recheck /dev/sda
+grub-install --target=i386-pc --recheck $diskname
 grub-mkconfig -o /boot/grub/grub.cfg
 
 systemctl enable dhcpcd
