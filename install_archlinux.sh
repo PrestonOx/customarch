@@ -41,26 +41,27 @@ echo ""$diskname"4 : start= $secstartt, size= $secdiskhome, type=83" >> my.layou
 sfdisk $diskname < my.layout
 
 #Formatage des partitions precedemment creees
-mkfs.ext4 /dev/sda1
-mkfs.ext4 /dev/sda2
-mkfs.ext4 /dev/sda3
-mkfs.ext4 /dev/sda4
 
-mkswap /dev/sda2
+mkfs.ext4 "$diskname"1
+mkfs.ext4 "$diskname"2
+mkfs.ext4 "$diskname"3
+mkfs.ext4 "$diskname"4
+
+mkswap "$diskname"2
 
 #Montage de nos partitions
 
-mount /dev/sda3 /mnt
+mount "$diskname"3 /mnt
 
 mkdir /mnt/home
 mkdir /mnt/boot
 
 
-mount /dev/sda4 /mnt/home
-mount /dev/sda1 /mnt/boot
+mount "$diskname"4 /mnt/home
+mount "$diskname"1 /mnt/boot
 
 #Activation de la partition SWAP
-swapon /dev/sda2
+swapon "$diskname"2
 
 #Installation des paquets
 pacstrap /mnt base linux linux-firmware
