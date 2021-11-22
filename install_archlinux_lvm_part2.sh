@@ -30,11 +30,11 @@ mkinitcpio -P
 echo -e "testdeploy\ntestdeploy" | passwd
 
 #Install GRUB
-#pacman -S --noconfirm grub
-#grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=Arch
-#grub-mkconfig -o /boot/grub/grub.cfg
+pacman -S --noconfirm grub
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=Arch
+grub-mkconfig -o /boot/grub/grub.cfg
 
 systemctl enable dhcpcd
 
 #Redemarrage
-#exit
+exit
