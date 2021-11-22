@@ -45,23 +45,21 @@ lvcreate -L "$ramsize"B VolGroup1 -n lvswap
 lvcreate -l 50%FREE VolGroup1 -n lvolroot
 lvcreate -l 50%FREE VolGroup1 -n lvolhome
 
-#Optionnel ???
-#modprobe dm_mod
-#vgscan
-#vgchange -ay
-
 #Formatage de nos volumes logiques (ainsi que de la partition primaire "boot")
 
-#mkfs.fat -F32 /dev/"$diskname"1
-#mkfs.ext4 /dev/VolGroup1/lvswap
-#mkfs.ext4 /dev/VolGroup1/lvolroot
-#mkfs.ext4 /dev/VolGroup1/lvolhome
+mkfs.fat -F32 /dev/""$diskname"1"
+mkfs.ext4 /dev/VolGroup1/lvswap
+mkfs.ext4 /dev/VolGroup1/lvolroot
+mkfs.ext4 /dev/VolGroup1/lvolhome
 
-#mkswap /dev/VolGroup1/lvswap
-#swapon /dev/VolGroup1/lvswap
+mkswap /dev/VolGroup1/lvswap
+swapon /dev/VolGroup1/lvswap
 
-#mount /dev/VolGroup1/lvolroot /mnt
-#mkdir /mnt/home
-#mount /dev/VolGroup1/lvolhome /mnt/home
-#mkdir /mnt/boot
-#mount /dev/"$diskname"1 /mnt/boot
+mount /dev/VolGroup1/lvolroot /mnt
+mkdir /mnt/home
+mount /dev/VolGroup1/lvolhome /mnt/home
+mkdir /mnt/boot
+mount /dev/"$diskname"1 /mnt/boot
+
+#Installation des paquets
+pacstrap /mnt base base-devel linux linux-firmware efibootmgr vim nano dhcpcd man-db
