@@ -1,5 +1,5 @@
 #!/bin/bash
-#Dernière ligne droite
+#DerniÃ¨re ligne droite
 
 ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
 hwclock --systohc
@@ -20,10 +20,9 @@ echo "KEYMAP=fr" >> /etc/vconsole.conf
 echo "generichostname" >> /etc/hostname
 
 #mkinitcpio (rajouter les hooks essentiels)
-# sed -re 's/^HOOKS=(.*)$/^HOOKS=(.*keymap lvm2)$/g' /etc/mkinitcpio.conf
 
-sed -re 's/block/block lvm2/g' /etc/mkinitcpio.conf
-sed -re 's/keyboard/keyboard keymap/g' /etc/mkinitcpio.conf
+sed -ire 's/block/block lvm2/g' /etc/mkinitcpio.conf
+sed -ire 's/keyboard/keyboard keymap/g' /etc/mkinitcpio.conf
 
 mkinitcpio -P
 
