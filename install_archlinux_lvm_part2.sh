@@ -9,8 +9,8 @@ hwclock --systohc
 
 #echo "fr_FR.UTF-8 UTF-8" >> /etc/locale.gen
 #echo "en_EN.UTF-8 UTF-8" >> /etc/locale.gen
-sed -i 's/#fr_FR.UTF-8 UTF-8/fr_FR.UTF-8 UTF-8/g'
-sed -i 's/#en_EN.UTF-8 UTF-8/en_EN.UTF-8 UTF-8/g'
+sed -i 's/#fr_FR.UTF-8 UTF-8/fr_FR.UTF-8 UTF-8/g' /etc/locale.gen
+sed -i 's/#en_EN.UTF-8 UTF-8/en_EN.UTF-8 UTF-8/g' /etc/locale.gen
 locale-gen
 echo "LANG=fr_FR.UTF-8" >> /etc/locale.conf
 echo "KEYMAP=fr" >> /etc/vconsole.conf
