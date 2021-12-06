@@ -69,7 +69,7 @@ mkdir /mnt/boot
 mount ""$diskname"1" /mnt/boot
 
 #Installation des paquets
-pacstrap /mnt base base-devel linux linux-firmware efibootmgr vim nano dhcpcd man-db lvm2
+pacstrap /mnt base base-devel linux linux-firmware efibootmgr vim nano dhcpcd man-db lvm2 openssh docker docker-compose
 
 #FSTAB
 genfstab -U -p /mnt >> /mnt/etc/fstab
